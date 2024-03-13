@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from 'react';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function BMICalculator() {
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [bmi, setBMI] = useState('');
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  const calculateBMI = () => {
+    const heightMeters = height / 100;
+    const bmiValue = (weight / (heightMeters * heightMeters)).toFixed(2);
+    setBMI(bmiValue);
+  };
+
+  return (
+    <div>
+      <h2>BMI Calculator</h2>
+      <div>
+        <label>Weight (kg):</label>
+        <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
+      </div>
+      <div>
+        <label>Height (cm):</label>
+        <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
+      </div>
+      <button onClick={calculateBMI}>Calculate BMI</button>
+      {bmi && <p>Your BMI is: {bmi}</p>}
+    </div>
+  );
+}
+
+export default BMICalculator;
