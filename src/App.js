@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import BMICalculator from 'bmi-calculator/src/index.js';
+import BMICalculator from './BMICalculator';
+import Testimonial from './Testimonial'; 
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -12,6 +13,7 @@ function App() {
           <div>
             <h1>Welcome to the BMI Calculator App</h1>
             <button onClick={() => setCurrentPage('bmiCalculator')}>Go to BMI Calculator</button>
+            <Testimonial /> {/* Render the Testimonial component */}
           </div>
         );
       case 'bmiCalculator':
@@ -32,7 +34,6 @@ function App() {
         <ul>
           <li onClick={() => setCurrentPage('home')}>Home</li>
           <li onClick={() => setCurrentPage('bmiCalculator')}>BMI Calculator</li>
-          {/* Add more navigation links here if needed */}
         </ul>
       </nav>
       <main>{renderPage()}</main>
